@@ -1,4 +1,4 @@
-package io.heimen.event;
+package io.heimen.publisher;
 
 import io.heimen.event.init.InitEvent;
 import org.springframework.context.ApplicationEventPublisher;

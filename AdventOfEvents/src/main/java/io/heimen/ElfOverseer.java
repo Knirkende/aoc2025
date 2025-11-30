@@ -1,11 +1,9 @@
 package io.heimen;
 
-import io.heimen.event.InitPublisher;
+import io.heimen.publisher.InitPublisher;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.util.Arrays;
 
 @SpringBootApplication
 public class ElfOverseer implements CommandLineRunner {
