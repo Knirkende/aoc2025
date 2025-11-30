@@ -1,5 +1,6 @@
 package io.heimen;
 
+import io.heimen.publisher.ExceptionPublisher;
 import io.heimen.publisher.InitPublisher;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -9,9 +10,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ElfOverseer implements CommandLineRunner {
 
     private final InitPublisher initPublisher;
+    private final ExceptionPublisher exceptionPublisher;
 
-    public ElfOverseer(InitPublisher initPublisher) {
+    public ElfOverseer(InitPublisher initPublisher, ExceptionPublisher exceptionPublisher) {
         this.initPublisher = initPublisher;
+        this.exceptionPublisher = exceptionPublisher;
     }
 
     static void main(String[] args) {
@@ -20,6 +23,12 @@ public class ElfOverseer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        initPublisher.publishInitEvent(this, args[0]);
+        try {
+            initPublisher.publishInitEvent(this, args[0]);
+            throw new IllegalStateException("blah");
+        } catch (Exception e) {
+            exceptionPublisher.publishExceptionEvent(this, e);
+        }
+
     }
 }
