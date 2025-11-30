@@ -1,8 +1,8 @@
 package io.heimen.event.exception;
 
-import org.springframework.context.ApplicationEvent;
+import io.heimen.event.BaseEvent;
 
-public class GrinchEvent extends ApplicationEvent {
+public class GrinchEvent extends BaseEvent {
 
     private final Throwable grinch;
 
