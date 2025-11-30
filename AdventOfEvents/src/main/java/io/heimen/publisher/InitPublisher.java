@@ -13,8 +13,8 @@ public class InitPublisher {
         this.applicationEventPublisher = applicationEventPublisher;
     }
 
-    public void publishInitEvent(Object source, String message) {
-        var event = new InitEvent(source, message);
+    public void publishInitEvent(Object source) {
+        var event = new InitEvent(source);
         applicationEventPublisher.publishEvent(event);
     }
 }

@@ -8,7 +8,7 @@ public class InitEvent extends BaseEvent {
 
     private static final Logger logger = LoggerFactory.getLogger(InitEvent.class);
 
-    public InitEvent(Object source, String message) {
+    public InitEvent(Object source) {
         super(source);
     }
 }

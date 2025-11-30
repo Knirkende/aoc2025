@@ -22,10 +22,9 @@ public class ElfOverseer implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         try {
-            initPublisher.publishInitEvent(this, args[0]);
-            throw new IllegalStateException("blah");
+            initPublisher.publishInitEvent(this);
         } catch (Exception e) {
             exceptionPublisher.publishExceptionEvent(this, e);
         }

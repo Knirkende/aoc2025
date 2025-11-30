@@ -1,7 +1,6 @@
 package io.heimen.listener;
 
 import io.heimen.event.BaseEvent;
-import io.heimen.event.init.InitEvent;
 import org.jspecify.annotations.NonNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +14,6 @@ public class BaseEventLogListener implements ApplicationListener<@NonNull BaseEv
 
     @Override
     public void onApplicationEvent(BaseEvent event) {
-        logger.info("... this is the logger from BaseEventLogListener, with child class {}", event.getClass().getSimpleName());
+        logger.info("Logging listener intercepted an event of type {}", event.getEventTypeIdentifier());
     }
 }
