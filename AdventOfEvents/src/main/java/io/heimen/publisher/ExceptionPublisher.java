@@ -14,8 +14,8 @@ public class ExceptionPublisher {
         this.applicationEventPublisher = applicationEventPublisher;
     }
 
-    public void publishExceptionEvent(Object source, Throwable grinch) {
-        var event = new GrinchEvent(this, grinch);
+    public void publishExceptionEvent(Object source, int dayNumber, Throwable grinch) {
+        var event = new GrinchEvent(this, dayNumber, grinch);
         applicationEventPublisher.publishEvent(event);
     }
 }

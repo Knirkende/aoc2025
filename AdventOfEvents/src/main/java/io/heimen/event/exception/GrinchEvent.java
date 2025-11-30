@@ -6,8 +6,8 @@ public class GrinchEvent extends BaseEvent {
 
     private final Throwable grinch;
 
-    public GrinchEvent(Object source, Throwable grinch) {
-        super(source);
+    public GrinchEvent(Object source, int dayNumber, Throwable grinch) {
+        super(source, dayNumber);
         this.grinch = grinch;
     }
 

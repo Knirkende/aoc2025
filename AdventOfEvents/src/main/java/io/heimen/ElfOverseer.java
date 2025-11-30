@@ -23,10 +23,15 @@ public class ElfOverseer implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
+        var dayNum = 0;
         try {
-            initPublisher.publishInitEvent(this);
+            if (args.length != 1) {
+                throw new IllegalArgumentException("Runner must be invoked with day number argument.");
+            }
+            dayNum = Integer.parseInt(args[0]);
+            initPublisher.publishInitEvent(this, dayNum);
         } catch (Exception e) {
-            exceptionPublisher.publishExceptionEvent(this, e);
+            exceptionPublisher.publishExceptionEvent(this, dayNum, e);
         }
 
     }

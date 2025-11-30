@@ -14,6 +14,6 @@ public class BaseEventLogListener implements ApplicationListener<@NonNull BaseEv
 
     @Override
     public void onApplicationEvent(BaseEvent event) {
-        logger.info("Logging listener intercepted an event of type {}", event.getEventTypeIdentifier());
+        logger.info("Day {}: Event {} was published", event.getDayNum(), event.getEventTypeIdentifier());
     }
 }

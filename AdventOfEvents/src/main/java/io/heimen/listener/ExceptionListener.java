@@ -21,7 +21,7 @@ public class ExceptionListener implements ApplicationListener<@NonNull GrinchEve
 
     @Override
     public void onApplicationEvent(@NonNull GrinchEvent event) {
-        logger.info("An exception was caught with reason: {}", event.getGrinch().getMessage());
+        logger.info("An exception was caught with reason: {}", event.getGrinch().getMessage(), event.getGrinch());
         SpringApplication.exit(applicationContext, () -> SpringApplication.exit(applicationContext));
     }
 }
