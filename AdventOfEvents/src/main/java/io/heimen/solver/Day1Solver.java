@@ -2,6 +2,9 @@ package io.heimen.solver;
 
 import java.util.List;
 
+/**
+ * Wow such javadoc
+ */
 public class Day1Solver {
 
     public int solve(List<String> data) {
