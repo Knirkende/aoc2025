@@ -11,4 +11,4 @@ target/
 .idea/
 
 ### AOC datasets ###
-input/
+**/input/
