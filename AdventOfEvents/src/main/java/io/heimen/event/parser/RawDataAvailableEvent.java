@@ -4,12 +4,12 @@ import io.heimen.event.BaseEvent;
 
 import java.util.List;
 
-public class ParseEvent extends BaseEvent {
+public class RawDataAvailableEvent extends BaseEvent {
 
     private Object parsedData;
     private List<String> rawLines;
 
-    public ParseEvent(Object source, int dayNumber, List<String> rawLines) {
+    public RawDataAvailableEvent(Object source, int dayNumber, List<String> rawLines) {
         super(source, dayNumber);
         this.rawLines = rawLines;
     }

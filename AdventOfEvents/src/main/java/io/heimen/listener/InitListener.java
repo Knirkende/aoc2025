@@ -21,6 +21,6 @@ public class InitListener implements ApplicationListener<@NonNull InitEvent> {
     @Override
     public void onApplicationEvent(InitEvent event) {
         logger.info("... and the listener listened.");
-        parserPublisher.publishParseEvent(this, event.getDayNum());
+        parserPublisher.publishRawDataAvailableEvent(this, event.getDayNum());
     }
 }
