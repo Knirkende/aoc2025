@@ -1,6 +1,7 @@
 package io.heimen.listener;
 
 import io.heimen.event.parser.RawDataAvailableEvent;
+import io.heimen.parser.RangeParser;
 import io.heimen.parser.SimpleLineParser;
 import io.heimen.publisher.ParserPublisher;
 import org.jspecify.annotations.NonNull;
@@ -28,6 +29,10 @@ public class ParserListener implements ApplicationListener<@NonNull RawDataAvail
             case 1:
                 var res = SimpleLineParser.parseAsList(event.getRawLines());
                 parserPublisher.publishDataAvailableEvent(event.getSource(), event.getDayNum(), Map.of("data", res));
+                break;
+            case 2:
+                var res2 = RangeParser.parseAsPairs(event.getRawLines(), ",");
+                parserPublisher.publishDataAvailableEvent(event.getSource(), event.getDayNum(), Map.of("data", res2));
                 break;
             default:
                 break;
