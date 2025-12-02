@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Returns a list of lines
+ * Returns a map keyed to range low and with range high value
  */
 public class RangeParser {
 
