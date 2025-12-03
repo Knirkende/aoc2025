@@ -3,6 +3,7 @@ package io.heimen.listener;
 import io.heimen.event.parser.DataAvailableEvent;
 import io.heimen.solver.Day1Solver;
 import io.heimen.solver.Day2Solver;
+import io.heimen.solver.Day3Solver;
 import org.jspecify.annotations.NonNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,6 +40,12 @@ public class SolverListener implements ApplicationListener<@NonNull DataAvailabl
                 logger.info("Part 1: {}", res2);
                 var res2_2 = solver2.solvePartTwo(data2);
                 logger.info("Part 2: {}", res2_2);
+            case 3:
+                @SuppressWarnings("unchecked")
+                var data3 = ((Map<String, List<String>>) event.getParsedData()).get("data");
+                var solver3 = new Day3Solver();
+                var res3 = solver3.solve(data3);
+                logger.info("Part 1: {}", res3);
         }
     }
 }
