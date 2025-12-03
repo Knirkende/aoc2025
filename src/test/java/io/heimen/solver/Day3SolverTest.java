@@ -24,6 +24,8 @@ class Day3SolverTest {
         }
         var res = solver.solve(parsed);
         assertEquals(357, res);
+        res = solver.solvePartTwo(parsed);
+        assertEquals(3121910778619L, res);
     }
 
 }
