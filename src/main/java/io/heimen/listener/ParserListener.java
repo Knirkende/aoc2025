@@ -25,17 +25,11 @@ public class ParserListener implements ApplicationListener<@NonNull RawDataAvail
     @Override
     public void onApplicationEvent(RawDataAvailableEvent event) {
         logger.info("Unparsed stuff encountered of length: {}", event.getRawLines().size());
-        switch (event.getDayNum()) {
-            case 1:
-                var res = SimpleLineParser.parseAsList(event.getRawLines());
-                parserPublisher.publishDataAvailableEvent(event.getSource(), event.getDayNum(), Map.of("data", res));
-                break;
-            case 2:
-                var res2 = RangeParser.parseAsPairs(event.getRawLines(), ",");
-                parserPublisher.publishDataAvailableEvent(event.getSource(), event.getDayNum(), Map.of("data", res2));
-                break;
-            default:
-                break;
-        }
+        Object res = switch (event.getDayNum()) {
+            case 1, 3 -> SimpleLineParser.parseAsList(event.getRawLines());
+            case 2 -> RangeParser.parseAsPairs(event.getRawLines(), ",");
+            default -> throw new IllegalArgumentException("Invalid day number");
+        };
+        parserPublisher.publishDataAvailableEvent(event.getSource(), event.getDayNum(), Map.of("data", res));
     }
 }
