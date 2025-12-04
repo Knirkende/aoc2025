@@ -22,8 +22,8 @@ class Day4SolverTest {
         }
         var res = solver.solve(parsed);
         assertEquals(13, res);
-        //res = solver.solvePartTwo(parsed);
-        //assertEquals(0L, res);
+        res = solver.solvePartTwo(parsed);
+        assertEquals(43, res);
     }
 
 }

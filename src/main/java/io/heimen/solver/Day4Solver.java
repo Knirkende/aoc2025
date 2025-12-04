@@ -16,6 +16,38 @@ public class Day4Solver {
 
     public long solve(List<String> data) {
         var res = 0;
+        var floorPlan = prepareFloorplan(data);
+        for (int y = 1; y < data.size() + 1; y++) {
+            for (int x = 1; x < data.getFirst().length() + 1; x++) {
+                if (floorPlan.get(y).get(x) > 0 && countNeighbors(floorPlan, x, y) < 4) {
+                    res++;
+                }
+            }
+        }
+        return res;
+    }
+
+    public long solvePartTwo(List<String> data) {
+        var res = 0;
+        var floorPlan = prepareFloorplan(data);
+        boolean wasChanged = true;
+        while (wasChanged) {
+            wasChanged = false;
+            for (int y = 1; y < data.size() + 1; y++) {
+                for (int x = 1; x < data.getFirst().length() + 1; x++) {
+                    if (floorPlan.get(y).get(x) > 0 && countNeighbors(floorPlan, x, y) < 4) {
+                        floorPlan.get(y).set(x, 0);
+                        wasChanged = true;
+                        res++;
+                    }
+                }
+            }
+        }
+
+        return res;
+    }
+
+    private List<List<Integer>> prepareFloorplan(List<String> data) {
         List<List<Integer>> floorPlan = new ArrayList<>();
         List<Integer> wall = new ArrayList<>();
         for (var i = 0; i < data.size() + 2; i++) {
@@ -25,21 +57,12 @@ public class Day4Solver {
         for (var row : data) {
             var mapRow = new ArrayList<Integer>();
             mapRow.add(0);
-            Arrays.stream(row.split("")).map(shelf -> "@".equals(shelf) ? 1 : 0).forEach(mapRow::add);
+            Arrays.stream(row.split("")).map(elfShelf -> "@".equals(elfShelf) ? 1 : 0).forEach(mapRow::add);
             mapRow.add(0);
             floorPlan.add(mapRow);
         }
         floorPlan.add(wall);
-
-        for (int y = 1; y < data.size() + 1; y++) {
-            for (int x = 1; x < data.getFirst().length() + 1; x++) {
-                if (floorPlan.get(y).get(x) > 0 && countNeighbors(floorPlan, x, y) < 4) {
-                    res++;
-                }
-            }
-        }
-
-        return res;
+        return floorPlan;
     }
 
     private int countNeighbors(List<List<Integer>> floorPlan, int x, int y) {
@@ -57,11 +80,6 @@ public class Day4Solver {
 
         return res;
 
-    }
-
-    public long solvePartTwo(List<String> data) {
-        var res = 0L;
-        return res;
     }
 
 }

@@ -55,6 +55,8 @@ public class SolverListener implements ApplicationListener<@NonNull DataAvailabl
                 var solver4 = new Day4Solver();
                 var res4 = solver4.solve(data4);
                 logger.info("Part 1: {}", res4);
+                var res4_2 = solver4.solvePartTwo(data4);
+                logger.info("Part 2: {}", res4_2);
         }
     }
 }
