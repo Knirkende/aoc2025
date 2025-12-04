@@ -26,7 +26,7 @@ public class ParserListener implements ApplicationListener<@NonNull RawDataAvail
     public void onApplicationEvent(RawDataAvailableEvent event) {
         logger.info("Unparsed stuff encountered of length: {}", event.getRawLines().size());
         Object res = switch (event.getDayNum()) {
-            case 1, 3 -> SimpleLineParser.parseAsList(event.getRawLines());
+            case 1, 3, 4 -> SimpleLineParser.parseAsList(event.getRawLines());
             case 2 -> RangeParser.parseAsPairs(event.getRawLines(), ",");
             default -> throw new IllegalArgumentException("Invalid day number");
         };
