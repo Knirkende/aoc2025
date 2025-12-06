@@ -1,6 +1,7 @@
 package io.heimen.listener;
 
 import io.heimen.event.parser.RawDataAvailableEvent;
+import io.heimen.parser.PersistRangeParser;
 import io.heimen.parser.RangeParser;
 import io.heimen.parser.SimpleLineParser;
 import io.heimen.publisher.ParserPublisher;
@@ -17,9 +18,11 @@ public class ParserListener implements ApplicationListener<@NonNull RawDataAvail
 
     private static final Logger logger = LoggerFactory.getLogger(ParserListener.class);
     private final ParserPublisher parserPublisher;
+    private final PersistRangeParser persistRangeParser;
 
-    public ParserListener(ParserPublisher parserPublisher) {
+    public ParserListener(ParserPublisher parserPublisher, PersistRangeParser persistRangeParser) {
         this.parserPublisher = parserPublisher;
+        this.persistRangeParser = persistRangeParser;
     }
 
     @Override
@@ -28,6 +31,7 @@ public class ParserListener implements ApplicationListener<@NonNull RawDataAvail
         Object res = switch (event.getDayNum()) {
             case 1, 3, 4 -> SimpleLineParser.parseAsList(event.getRawLines());
             case 2 -> RangeParser.parseAsPairs(event.getRawLines(), ",");
+            case 5 -> persistRangeParser.parseAndPersistRanges(event.getRawLines());
             default -> throw new IllegalArgumentException("Invalid day number");
         };
         parserPublisher.publishDataAvailableEvent(event.getSource(), event.getDayNum(), Map.of("data", res));

@@ -4,6 +4,7 @@ import io.heimen.publisher.ExceptionPublisher;
 import io.heimen.publisher.InitPublisher;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.IOException;
 
