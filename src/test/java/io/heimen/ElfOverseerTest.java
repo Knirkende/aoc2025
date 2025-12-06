@@ -23,7 +23,7 @@ class ElfOverseerTest {
 
         var overseer = new ElfOverseer(initPublisher, exceptionPublisher);
 
-        //overseer.run("0");
+        overseer.run("0");
 
         Mockito.verify(initPublisher).publishInitEvent(any(), eq(0));
 
@@ -40,7 +40,7 @@ class ElfOverseerTest {
 
         var overseer = new ElfOverseer(initPublisher, exceptionPublisher);
 
-        //overseer.run("0");
+        overseer.run("0");
 
         Mockito.verify(exceptionPublisher).publishExceptionEvent(any(), eq(0), eq(grinch));
 
