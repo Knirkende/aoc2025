@@ -32,6 +32,7 @@ public class ParserListener implements ApplicationListener<@NonNull RawDataAvail
             case 1, 3, 4 -> SimpleLineParser.parseAsList(event.getRawLines());
             case 2 -> RangeParser.parseAsPairs(event.getRawLines(), ",");
             case 5 -> persistRangeParser.parseAndPersistRanges(event.getRawLines());
+            case 6 -> SimpleLineParser.parseAsListNoTrim(event.getRawLines());
             default -> throw new IllegalArgumentException("Invalid day number");
         };
         parserPublisher.publishDataAvailableEvent(event.getSource(), event.getDayNum(), Map.of("data", res));
