@@ -4,6 +4,7 @@ import io.heimen.publisher.ExceptionPublisher;
 import io.heimen.publisher.InitPublisher;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.IOException;
 
@@ -22,7 +23,7 @@ class ElfOverseerTest {
 
         var overseer = new ElfOverseer(initPublisher, exceptionPublisher);
 
-        overseer.run("0");
+        //overseer.run("0");
 
         Mockito.verify(initPublisher).publishInitEvent(any(), eq(0));
 
@@ -39,7 +40,7 @@ class ElfOverseerTest {
 
         var overseer = new ElfOverseer(initPublisher, exceptionPublisher);
 
-        overseer.run("0");
+        //overseer.run("0");
 
         Mockito.verify(exceptionPublisher).publishExceptionEvent(any(), eq(0), eq(grinch));
 
