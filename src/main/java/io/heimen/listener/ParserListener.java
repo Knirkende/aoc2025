@@ -1,6 +1,7 @@
 package io.heimen.listener;
 
 import io.heimen.event.parser.RawDataAvailableEvent;
+import io.heimen.parser.Map2dParser;
 import io.heimen.parser.PersistRangeParser;
 import io.heimen.parser.RangeParser;
 import io.heimen.parser.SimpleLineParser;
@@ -33,6 +34,7 @@ public class ParserListener implements ApplicationListener<@NonNull RawDataAvail
             case 2 -> RangeParser.parseAsPairs(event.getRawLines(), ",");
             case 5 -> persistRangeParser.parseAndPersistRanges(event.getRawLines());
             case 6 -> SimpleLineParser.parseAsListNoTrim(event.getRawLines());
+            case 7 -> Map2dParser.parseAs2dMap(event.getRawLines(), "");
             default -> throw new IllegalArgumentException("Invalid day number");
         };
         parserPublisher.publishDataAvailableEvent(event.getSource(), event.getDayNum(), Map.of("data", res));

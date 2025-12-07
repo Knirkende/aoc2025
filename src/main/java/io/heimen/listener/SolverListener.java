@@ -76,6 +76,14 @@ public class SolverListener implements ApplicationListener<@NonNull DataAvailabl
                 logger.info("Part 1: {}", res6);
                 var res6_2 = solver6.solvePartTwo(data6);
                 logger.info("Part 2: {}", res6_2);
+                break;
+            case 7:
+                @SuppressWarnings("unchecked")
+                var data7 = ((Map<String, List<List<String>>>) event.getParsedData()).get("data");;
+                var solver7 = new Day7Solver();
+                var res7 = solver7.solve(data7);
+                logger.info("Part 1: {}", res7);
+                break;
         }
     }
 }
